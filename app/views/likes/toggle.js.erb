@@ -1,0 +1,8 @@
+$('#likeToggle').toggleClass("fa-thumbs-up fa-thumbs-o-up");
+if ("<%= @result %>" === 'true'){
+  $('#likesCount').text(Number($('#likesCount').text())+1);
+}
+else
+{
+  $('#likesCount').text(Number($('#likesCount').text())-1);
+}

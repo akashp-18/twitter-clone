@@ -1,0 +1,12 @@
+<div class="col-3 col-sm-2 col-lg-3 px-3 px-md-4 pl-lg-3 pr-lg-2">
+    <%= image_tag 'white.png', class: 'img-fluid border circle-border' %>
+</div>
+<div class="col-9 col-sm-10 col-lg-9 pl-0 align-self-center pr-4" id="comment_<%= comment.id %>">
+    <p class="text-sm grey-text">
+        <%= comment.body %>
+    </p>
+    <p class="text-sm text-right grey-text font-weight-bold mb-0">
+        - <%= comment.user.name %>
+    </p>
+</div>
+<hr class="my-0">

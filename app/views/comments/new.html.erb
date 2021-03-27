@@ -1,0 +1,2 @@
+<%= render 'form' %>
+<%= link_to "Add Comment", challenge_idea_comments_path(challenge_id: @challenge.id, idea_id: @idea.id), method: :post, remote: true %>

@@ -1,0 +1,5 @@
+<%= form_for [@commentable, @comment] do |form| %>
+  <%= form.hidden_field :user_id, currnt_user.id %>
+  <%= form.text_field :body %>
+  <%= form.submit : save %>
+<% end %>
