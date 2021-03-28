@@ -3,7 +3,7 @@ class Tweet < ApplicationRecord
   has_many :comments, as: :commentable, dependent: :destroy
   has_many :likes, as: :likeable, dependent: :destroy
   has_one_attached :attachment do |attachable|
-    attachable.variant :thumb, resize: "100x100"
+    attachable.variant :thumb, resize: '100x100'
   end
   validates :title, presence: true, length: { minimum: 5 }
   validates :content, presence: true
