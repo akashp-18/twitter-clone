@@ -16,7 +16,9 @@ class TweetsController < ApplicationController
     @tweet = current_user.tweets.new
   end
 
-  def edit; end
+  def edit
+    return unless @tweet.draft?
+  end
 
   def create
     @tweet = current_user.tweets.build(tweet_params)
@@ -57,6 +59,6 @@ class TweetsController < ApplicationController
   end
 
   def tweet_params
-    params.require(:tweet).permit(:title, :content)
+    params.require(:tweet).permit(:title, :content, :attachment)
   end
 end

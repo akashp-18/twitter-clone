@@ -17,34 +17,34 @@
 
 <p>
   <strong>Likes:</strong>
+  <%= link_to toggle_tweet_likes_path(tweet_id: @tweet.id), method: :post, remote: true, class: 'btn btn-circle pink-ghost-btn mr-3' do %>
+    <i class="fa <%= @tweet.liked?(current_user) ? 'fa-thumbs-up': 'fa-thumbs-o-up' %>" id='likeToggle'></i>
+  <% end %>
   <div id='likesCount'>
     <%= @tweet.likes.count %>
   </div>
 </p>
-<%= link_to toggle_tweet_likes_path(tweet_id: @tweet.id), method: :post, remote: true, class: 'btn btn-circle pink-ghost-btn mr-3' do %>
-  <i class="fa <%= @tweet.liked?(current_user) ? 'fa-thumbs-up': 'fa-thumbs-o-up' %>" id='likeToggle'></i>
-<% end %>
+
+<%= image_tag(@tweet.attachment) if @tweet.attachment %>
 
 <%= link_to 'Edit', edit_tweet_path(@tweet) %> |
 <%= link_to 'Back', tweets_path %>
 
-<div class="card border-0 collapse drop-shadow rounded-sm-bottom" id="dashboardDiscussionBody">
-  <h5 class="font-weight-black px-3 py-2"><%= @comments.count%> Comments</h5>
-  <%= render 'comments/comments' %>
-  <%if user_signed_in? %>
-    <div class="rounded-sm-bottom border-0 bg-white px-2">
-      <div class="row">
-        <div class="col-3 col-sm-2 col-lg-3 px-3 px-md-4 pl-lg-3 pr-lg-2">
-          <%= image_tag 'white.png', class: 'img-fluid border circle-border' %>
-        </div>
-        <div class="col-9 col-sm-10 col-lg-9 pl-0 align-self-center pr-4">
-          <%= form_for [@commentable, @comment], remote: true do |f| %>
-            <%= f.hidden_field :user_id, value: current_user.id %>
-            <%= f.text_area :body, id: 'commentBody', class:'form-control form-control-sm border rounded-0', rows:"2", placeholder:"Give your opinion on the tweet.", required: true %>
-            <%= f.submit :save %>
-          <% end %>
-        </div>
+<h5 class="font-weight-black px-3 py-2"><%= @comments.count%> Comments</h5>
+<%= render 'comments/comments' %>
+<%if user_signed_in? %>
+  <div class="rounded-sm-bottom border-0 bg-white px-2">
+    <div class="row">
+      <div class="col-3 col-sm-2 col-lg-3 px-3 px-md-4 pl-lg-3 pr-lg-2">
+        <%= image_tag 'white.png', class: 'img-fluid border circle-border' %>
+      </div>
+      <div class="col-9 col-sm-10 col-lg-9 pl-0 align-self-center pr-4">
+        <%= form_for [@commentable, @comment], remote: true do |f| %>
+          <%= f.hidden_field :user_id, value: current_user.id %>
+          <%= f.text_area :body, id: 'commentBody', class:'form-control form-control-sm border rounded-0', rows:"2", placeholder:"Give your opinion on the tweet.", required: true %>
+          <%= f.submit :post %>
+        <% end %>
       </div>
     </div>
-  <% end %>
-</div>
+  </div>
+<% end %>

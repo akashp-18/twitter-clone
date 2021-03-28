@@ -17,7 +17,7 @@
       <tr>
         <td><%= tweet.title %></td>
         <td><%= tweet.content %></td>
-        <td><%= tweet.user.name %>
+        <td><%= tweet.user.name %></td>
         <td><%= link_to 'Show', tweet %></td>
         <% if user_signed_in? %>
           <td><%= link_to 'Edit', edit_tweet_path(tweet) %></td>
